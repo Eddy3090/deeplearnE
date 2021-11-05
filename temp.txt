@@ -1,0 +1,11 @@
+checkpoint = torch.load(model_path)
+model = checkpoint['model'].cuda()
+save_root = 'trt_gpu_models'
+trt_model = 'heart_coro_stenosis_det_torch'
+save_dir = os.path.join(save_root, trt_model, '1')
+input_tensor = torch.rand(1, 1, 256, 64, 64).cuda()
+model.eval()
+for param in model.parameters():
+    param.requires_grad = False
+trace_module = torch.jit.trace(model, input_tensor)
+trace_module.save(os.path.join(save_dir, 'model.pt'))
