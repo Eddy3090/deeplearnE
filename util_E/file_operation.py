@@ -381,6 +381,6 @@ class MyEncoder(json.JSONEncoder):
             return super(MyEncoder, self).default(obj)        
 
 
-# if __name__ == "__main__":
-#     t = get_time()
-#     x = 1    
+if __name__ == "__main__":
+    t = get_time()
+    x = 1    
